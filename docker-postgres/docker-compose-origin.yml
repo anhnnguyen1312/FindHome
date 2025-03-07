@@ -1,0 +1,27 @@
+services:
+  codeigniter:
+    build:
+      context: ./codeigniter
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./codeigniter:/var/www/html
+    depends_on:
+      - findHome
+
+  findHome:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: findHome@2024
+      MYSQL_DATABASE: findHome
+      MYSQL_USER: findHome
+      MYSQL_PASSWORD: findHome@2024
+volumes:
+  mysql_data:
+    driver: local

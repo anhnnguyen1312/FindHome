@@ -1,0 +1,16 @@
+.slick-arrow {
+    display: block;
+    z-index: 1;
+}
+  
+  .slick-prev {
+    left: 10px;
+}
+
+  .slick-next {
+    right: 10px;
+}
+
+  .slick-dots{
+    bottom: 10px;
+}

@@ -1,0 +1,44 @@
+# services:
+#   codeigniter:
+#     build:
+#       context: ./codeigniter
+#       dockerfile: Dockerfile
+#     ports:
+#       - "8000:80"
+#     volumes:
+#       - ./codeigniter:/var/www/html
+#     networks:
+#       - my_network
+#     # depends_on:
+#     #   - findinghome
+# networks:
+#   my_network:
+#     driver: bridge
+#   # findinghome:
+#   #   image: postgres:latest
+#   #   ports:
+#   #     - "6543:6543"
+#   #   environment:
+#   #     POSTGRES_DB: postgres
+#   #     POSTGRES_USER: postgres.wsnbyoezmsbjrkkxwupp
+#   #     POSTGRES_PASSWORD: findinghomepostgres123aA@
+
+services:
+  codeigniter:
+    build:
+      context: ./codeigniter
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./codeigniter:/var/www/html
+    environment:
+      - DB_HOST=aws-0-ap-southeast-1.pooler.supabase.com  # Địa chỉ IP hoặc tên miền của PostgreSQL server trực tuyến
+      - DB_USER=postgres.wsnbyoezmsbjrkkxwupp  # Tên người dùng PostgreSQL
+      - DB_PASSWORD=findinghomepostgres123aA@  # Mật khẩu PostgreSQL
+      - DB_NAME=postgres  # Tên cơ sở dữ liệu PostgreSQL
+    networks:
+      - app_network
+networks:
+  app_network:
+    driver: bridge

@@ -1,0 +1,347 @@
+:root {
+    --primary:#021A84;
+    --secondary: #E5532A;
+    --grey: #F2F2F2;
+    --font-color-blue:#021A84;
+    --font-color-grey:#999999;
+    --red:#FE4C4C;
+    --green: #2ADA66;
+  --background-color:#F2F2F2;
+  --text:#021A84;
+  --navbar-height: 60px;
+  --white:#ffffff;
+  --black:#000000;
+  }
+  .navbar {
+    background:  var( --white);
+    height: var(--navbar-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    font-family: 'PT Sans', sans-serif;  
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--navbar-height);
+    max-width: 1200px;
+  }
+  
+  .navbar-logo {
+    color: #F2545B;
+    justify-content: start;
+    
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .fa-suse {
+    margin-left: 0.5rem;
+    font-size: 2rem;
+  }
+  
+  .nav-menu {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
+    list-style: none;
+    text-align: center;
+    width: 55vw;
+    justify-content: end;
+    margin-right: 1rem;
+  }
+  
+  .nav-item {
+    height: var(--navbar-height);
+    padding-left: 20px;
+  }
+  
+  .nav-links {
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  font-size: 1rem;
+  font-weight: 200;
+    height: 100%;
+  }
+  .nav-links-active{
+    border-bottom: 4px solid #F2545B;
+    transition: all 0.2s ease-out;
+  }
+  .nav-links:hover {
+    border-bottom: 4px solid #F2545B;
+    transition: all 0.2s ease-out;
+  }
+  
+  .fa-bars {
+    color: var(--black);
+  }
+  
+  .nav-links-mobile {
+    display: none;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .white_icon{
+    color: var(--black);
+  }
+  .icon-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+  
+    padding: 10px;
+    font-size: large;
+  
+  }
+   .login--container{
+    display: flex;
+      gap: 10px
+   }
+  .navbar_search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  .login-btn-mobile{
+    display: none;
+  }
+  @media screen and (max-width: 1024px) {
+    .NavbarItems {
+      position: relative;
+    }
+  
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: calc(100vh - var(--navbar-height));
+      position: absolute;
+      top: var(--navbar-height);
+      left: -100%;
+      opacity: 1;
+      transition: all 0.5s ease;
+    }
+  
+    .nav-menu.active {
+      background: #faf9f9;
+      left: 0;
+      opacity: 1;
+      transition: all 0.5s ease;
+      z-index: 1;
+      padding: 50px
+    }
+    .login-btn-mobile{
+      display: table;
+    }
+    .nav-links {
+      text-align: center;
+      padding: 2rem;
+      width: 100%;
+      display: table;
+    }
+  
+    .nav-links:hover {
+      background-color: #fff;
+      color: #242424;
+      border-radius: 0;
+    }
+  
+    .navbar-logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(25%, 25%);
+    }
+  
+    .menu-icon {
+      display: block;
+      position: absolute;
+      bottom: 52%;
+      right: 0;
+      transform: translate(-100%, 60%);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+  
+    .fa-times {
+      color: #000000;
+      font-size: 2rem;
+    }
+  
+    .nav-links-mobile {
+      display: block;
+      text-align: center;
+      margin: 2rem auto;
+      border-radius: 4px;
+      width: 80%;
+      text-decoration: none;
+      font-size: 1.5rem;
+      background-color: transparent;
+      color: #fff;
+      padding: 14px 20px;
+      border: 1px solid #fff;
+      transition: all 0.3s ease-out;
+    }
+  
+    .nav-links-mobile:hover {
+      background: #fff;
+      color: #242424;
+      transition: 250ms;
+    }
+  }
+    
+  .search--container{
+    width: 100%;
+    padding: 20px;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+  }
+  .search--bar{
+    max-width: 1120px;
+    width: 100%;
+  }
+  .search--filter{
+    gap: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var( --secondary);
+    width: 100%;
+  }
+  
+  .select--search{
+    display : flex
+  }
+  .search--filter__location{
+    flex: 20%;
+  }
+  .btn--search{
+    border-radius: 8px;
+      width: 200px;
+      height: 32px;
+      background: var(--primary);
+      color: white;
+      width: 100%;
+  }
+
+  .btn--search--wrapper{
+    flex: 20%;
+    display: flex;
+  }
+
+  .cart__list{
+    background-color: white;
+    font-size: small;
+    font-weight: 100;
+    position: absolute;
+    width: 135px;
+    padding: 10px;
+    display: none;
+    top: 48px;
+    right: 5px;
+    box-shadow: 0 2px 10px #ccc;
+    border-radius: 4px;
+    animation: fadeIn ease-in 0.2s;
+    cursor: pointer;
+    z-index: 1;
+    border:1px solid #d1d1d1;
+
+}
+
+.icon-navbar-user:hover .cart__list {
+  display : block;
+
+}
+.cart__list::after{
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  right: 0px;
+  top: -30px;
+  border-width: 20px 20px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+}
+.notify{
+  background-color: white;
+  font-size: small;
+  font-weight: 100;
+  position: absolute;
+  width: 400px;
+  padding: 10px 0;
+  display: none;
+  top: 40px;
+  right: -12px;
+  box-shadow: 0 2px 10px #ccc;
+  border-radius: 4px;
+  animation: headerNotifyGrowth ease-in 0.25s;
+  cursor: pointer;
+  transform-origin: calc(100% - 20px) top;
+  z-index: 1;
+  border:1px solid #d1d1d1;
+
+}
+.icon-navbar-user:hover .notify {
+  display : block;
+
+}
+.notify::after{
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  right: 0px;
+  top: -30px;
+  border-width: 20px 20px;
+  border-style: solid;
+  border-color: transparent transparent white transparent ;
+}
+.map::after{
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  right: 9px;
+  top: 28px;
+  border-width: 8px 13px;
+  border-style: solid;
+  border-color: #f43f5e transparent transparent transparent  ;
+}
+@keyframes headerNotifyGrowth {
+  from{
+      opacity: 0;
+      transform: scale(0);
+
+  }
+  to {
+      opacity:1;
+      transfrom: (1)
+
+  }
+}
+@keyframes fadeIn{
+  from{
+      opacity: 0;
+  } to {
+      opacity: 1;
+  }
+}
