@@ -6,28 +6,31 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import numpy as np
 import mysql.connector
+import psycopg2
 app = Flask(__name__)
 CORS(app)
 
-config = {
-    'user': 'findHome',
-    'password': 'findHome@2024',
-    'host': '127.0.0.1',
-    'database': 'findHome',
-    'port': 3307,
-    'raise_on_warnings': True
-}
+
 try:
 
-    conn = mysql.connector.connect(**config)
+    # conn = mysql.connector.connect(**config)
 
-    if conn.is_connected():
-        print('recommned Kết nối thành công vào Database')
-
-    query1 = 'SELECT * FROM userAction'
-    query2 = 'SELECT id, typeRoom, price, area FROM posts'
+    # if conn.is_connected():
+    #     print('recommned Kết nối thành công vào Database')
+    conn = psycopg2.connect(
+        dbname='postgres',
+        user='postgres.wsnbyoezmsbjrkkxwupp',
+        password='findinghomepostgres123aA@',
+        host='aws-0-ap-southeast-1.pooler.supabase.com',
+        port=6543
+    )
+    print("Connection to PostgreSQL successful!")
+    
+    query1 = 'SELECT * FROM "userAction"'
+    query2 = 'SELECT "id", "typeRoom", "price", "area" FROM "posts"'
     #query2='SELECT posts.id as id, posts.typeRoom as typeRoom, posts.price as price, posts.area as area FROM posts JOIN statusPost On posts.id = statusPost.postId Where statusPost.check = 1 and statusPost.status = 0'
     user_interactions = pd.read_sql_query(query1, conn)
+    print(user_interactions)
     posts_info = pd.read_sql_query(query2, conn)
     posts_info['content'] = posts_info['typeRoom'] + ' ' + posts_info['price'].astype(str) + ' ' + posts_info['area'].astype(str)
 
@@ -74,12 +77,13 @@ try:
                 return jsonify({"message": "No interactions found for the user."}), 404
         else:
             return jsonify({"message": "Failed to retrieve user ID from API."}), 400
-except mysql.connector.Error as err:
-        print(f"Lỗi recommend.py: {err}")
+except Exception as e:
+    print(f"Error: {e}")
 
 finally:
-    if 'conn' in locals() and conn.is_connected():
-        conn.close()    
+        # Đóng kết nối
+    if conn is not None:
+        conn.close()   
     
     
 if __name__ == '__main__':

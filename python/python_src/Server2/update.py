@@ -1,5 +1,6 @@
 import mysql.connector
 import psycopg2
+from sqlalchemy import create_engine
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -25,13 +26,14 @@ tf = TfidfVectorizer ()
 # }
 
 #postgres
+
 config = {
-    'user': 'postgres',
-    'password': '123456',
-    'host': '127.0.0.1',
-    'dbname': 'findinghome-postgres',
-    'port': 5432,
-    
+    'user': 'postgres.wsnbyoezmsbjrkkxwupp',
+    'password': 'findinghomepostgres123aA@',
+    'host': 'aws-0-ap-southeast-1.pooler.supabase.com',
+    'database': 'postgres',
+    'port': 6543,
+    'raise_on_warnings': True
 }
 def combineFeatures_type_price_address(row):
     features= str(row['typeRoom']) + " " + str(row['price']) + " " + str(row['address']).split(',')[2] + " " + str(row['address']).split(',')[1] + " " + str(row['address']).split(',')[0]
@@ -83,56 +85,107 @@ def create_df_from_index(index,sourceDf):
     return similar_df
 @app.route('/')
 def index():
+    print("hi")
     return "Welcome to FindHome"
 @app.route('/recommend',methods=['GET'])
 def call_api():
     try:
     # Kết nối vào cơ sở dữ liệu
-   
+    # Kết nối vào cơ sở dữ liệu bằng mysql
+        #conn = mysql.connector.connect(**config)
 
         # Kết nối vào cơ sở dữ liệu bằng postgres
-        conn = psycopg2.connect(**config)
-        cursor = conn.cursor()
-        if conn is not None and conn.closed == 0:
-            print("Kết nối đến PostgreSQL thành công!")
-        else:
-            print("Kết nối PostgreSQL đã bị đóng!")
+        # DATABASE_URL = 'postgresql://postgres:123456@localhost:5432/findinghome'
+        # engine = create_engine(DATABASE_URL)
+        #return "chuẩn bị Kết nối đến PostgreSQL"
+        #conn = psycopg2.connect(**config)
+        conn = psycopg2.connect(
+        dbname='postgres',
+        user='postgres.wsnbyoezmsbjrkkxwupp',
+        password='findinghomepostgres123aA@',
+        host='aws-0-ap-southeast-1.pooler.supabase.com',
+        port=6543
+    )
+        print("Connection to PostgreSQL successful!")
+        # if conn is not None and conn.closed == 0:
+        #     print("Kết nối đến PostgreSQL thành công!")
+        # else:
+        #     print("Kết nối PostgreSQL đã bị đóng!")
+        #mysql
+        # query = "SELECT * FROM posts "
+        # query2 = "SELECT * FROM statusPost WHERE status='0'"
         
-         # Kết nối vào cơ sở dữ liệu bằng mysql
-        #conn = mysql.connector.connect(**config)
-        #if conn.is_connected():
-         #   print('update Kết nối thành công vào Database')
-        query = "SELECT * FROM posts "
-        query2 = "SELECT * FROM statusPost WHERE status='0'"
-        query3 = "SELECT userId, GROUP_CONCAT(postId ORDER BY postId) AS postIds FROM userLikes GROUP BY userId"
+        #query3 = "SELECT userId, GROUP_CONCAT(postId ORDER BY postId) AS postIds FROM userLikes GROUP BY userId"
+        #postgres
+
+        query = 'SELECT * FROM "posts" '
+        query2 = 'SELECT * FROM "statusPost" WHERE status=0'
+        
+        query3 = """SELECT "userId", STRING_AGG("postId"::text, ',' ORDER BY "postId") AS postIds 
+            FROM "userLikes" 
+            GROUP BY "userId";"""
+        # query3 = 'SELECT "userId", STRING_AGG("postId"::TEXT, ',' ORDER BY "postId") AS postIds FROM "userLikes"  GROUP BY "userId"'
+        df = pd.read_sql_query(query, conn)
+        print(df)
+        # df_text1 = pd.read_sql_query('SELECT "userId" FROM "userLikes" ', engine)
+        # print(df_text1)
+        
         dfLike = pd.read_sql_query(query3, conn)
+        print(dfLike)
         df = pd.read_sql_query(query, conn)
         df2 = pd.read_sql_query(query2, conn)
+        print(df2)
+
         dfCheck = df2[df2['check'] == 1]
+        print(dfCheck)
         index=dfCheck['postId']
+        print(index)
+
         filtered_df = df[df['id'].isin(index)]
+        print(filtered_df)
         filtered_df.reset_index(inplace=True)
-        filtered_df = filtered_df[['id','userId','address','typeRoom','price']]        
+        filtered_df = filtered_df[['id','userId','address','typeRoom','price']] 
+        print(filtered_df)
+       
         resultPostId = []
         resultUserId = []
         resultPostbyUserId = []
-
+        #return jsonify({'dfLike': "hi"})
         postID_number = []
         id = request.args.get('id')
         if id:
+            print(id)
+
             data_array = [item for item in id.split(',')]
+            print("data_array")
+            print(data_array)
+
             postId=int(data_array[0])
+            print("postId")
+            print(postId)
+            print('len(data_array)')
+            print(len(data_array))
             userId=None
-            if data_array[1] != "null" :
+            #if data_array[1] != "null" :
+            if len(data_array) > 1:
                 userId=int(data_array[1])
+                print(userId)
+                print("userId")
+
         
         if postId not in filtered_df['id'].values:
             return jsonify({'Error': 'bài đăng không hợp lệ'})
         if userId not in dfLike['userId'].values:
+            print(dfLike['userId'])
+            print("5")
+
             postID_number =5
         else:
             postID_number = 3
+            print("3")
         if len(filtered_df) > 0:
+            print(">0")
+
             if  postID_number == 3 :
                 # tinh userId
                 indexUser = dfLike[dfLike['userId'] == userId].index[0]
@@ -217,20 +270,19 @@ def call_api():
                     #return jsonify({'postId quận > 7': resultPostId})
             return jsonify({'postId': resultPostId,'userId': resultUserId })
         else:
+            print("else")
+
             # tinhs car postID userID
 
             return jsonify({'postId': resultPostId,'userId': resultUserId })
-    except psycopg2.Error as err:
-        print(f"Lỗi update.py: {err}")
-
+    # except psycopg2.Error as err:
+    #     print(f"Lỗi update.py: {err}")
+    except Exception as e:
+        print(f"Error: {e}")
     finally:
-        # Đóng kết nối mysql
-        # if 'conn' in locals() and conn.is_connected():
-        #     #cursor.close()
-        #     conn.close() 
-        # đóng kết nối postgres
+        # Đóng kết nối
         if conn is not None:
-            conn.close()   
+            conn.close() 
     
 if __name__ == '__main__':
     app.run(debug=True , host="0.0.0.0", port=5001)
