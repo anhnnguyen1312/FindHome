@@ -105,7 +105,7 @@ class CI_Config {
 			}
 			else
 			{
-				$base_url = 'http://localhost:8000/';
+				$base_url = 'https://findhome-eg5m.onrender.com//';
 			}
 
 			$this->set_item('base_url', $base_url);

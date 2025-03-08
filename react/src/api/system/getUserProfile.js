@@ -5,7 +5,7 @@ export const callApiGetUserProfile = (userId) =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: `http://localhost:8000/user-profile/${userId}`,
+        url: `https://findhome-eg5m.onrender.com//user-profile/${userId}`,
       });
       resolve(response);
     } catch (error) {

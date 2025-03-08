@@ -5,7 +5,7 @@ export const callApiHomepagePost = () =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: "http://localhost:8000/list-homepage-post",
+        url: "https://findhome-eg5m.onrender.com//list-homepage-post",
       });
       console.log(response);
       resolve(response);
@@ -19,7 +19,7 @@ export const callApiCreatePost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "http://localhost:8000/create-post",
+        url: "https://findhome-eg5m.onrender.com//create-post",
         data: payload,
       });
 
@@ -34,7 +34,7 @@ export const callApiUpdatePost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "http://localhost:8000/update-post",
+        url: "https://findhome-eg5m.onrender.com//update-post",
         data: payload,
       });
       resolve(response);
@@ -48,7 +48,7 @@ export const callApiDeletePost = (id) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: `http://localhost:8000/post-delete/${id}`,
+        url: `https://findhome-eg5m.onrender.com//post-delete/${id}`,
       });
       resolve(response);
     } catch (error) {
@@ -61,7 +61,7 @@ export const callApiDetailPost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: `http://localhost:8000/post-detail/${payload}`,
+        url: `https://findhome-eg5m.onrender.com//post-detail/${payload}`,
         data: payload,
       });
       resolve(response);
@@ -75,7 +75,7 @@ export const callApiRecommendSystem = (postId, userId) =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: `http://127.0.0.1:5001/recommend?id=${postId},${userId}`,
+        url: `https://findhome-python-server.onrender.com/recommend?id=${postId},${userId}`,
       });
       resolve(response);
     } catch (error) {
@@ -88,7 +88,7 @@ export const callApihandleLikePost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: `http://localhost:8000/handle-like-post`,
+        url: `https://findhome-eg5m.onrender.com//handle-like-post`,
         data: payload,
       });
       resolve(response);
@@ -102,7 +102,7 @@ export const callApiCheckLikePost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "put",
-        url: `http://localhost:8000/check-like-post`,
+        url: `https://findhome-eg5m.onrender.com//check-like-post`,
         data: payload,
       });
       resolve(response);
@@ -116,7 +116,7 @@ export const callApiListLikePost = (userId) =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: `http://localhost:8000/list-liked-post/${userId}`,
+        url: `https://findhome-eg5m.onrender.com//list-liked-post/${userId}`,
       });
       resolve(response);
     } catch (error) {
