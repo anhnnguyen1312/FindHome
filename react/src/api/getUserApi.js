@@ -6,7 +6,7 @@ export const callApiUpdateProfile = (payload) =>
       const response = await axiosConfig({
         method: "post",
 
-        url: `https://findhome-eg5m.onrender.com//handle-profile`,
+        url: `https://findhome-eg5m.onrender.com/handle-profile`,
         data: payload,
       });
       resolve(response);

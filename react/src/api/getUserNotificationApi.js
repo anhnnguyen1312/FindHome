@@ -5,7 +5,7 @@ export const callApiUserNotification = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//user-notification",
+        url: "https://findhome-eg5m.onrender.com/user-notification",
         data: payload,
       });
       resolve(response);
@@ -18,8 +18,8 @@ export const callApiUserMarkAsRead = (id) =>
   new Promise(async (resolve, reject) => {
     try {
       const url = id
-        ? `https://findhome-eg5m.onrender.com//user-mark-read/${id}`
-        : `https://findhome-eg5m.onrender.com//user-mark-read`;
+        ? `https://findhome-eg5m.onrender.com/user-mark-read/${id}`
+        : `https://findhome-eg5m.onrender.com/user-mark-read`;
       const response = await axiosConfig({
         method: "put",
         url: url,

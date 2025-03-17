@@ -5,7 +5,7 @@ export const callApiRegister = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//register",
+        url: "https://findhome-eg5m.onrender.com/register",
         data: payload,
       });
       resolve(response);
@@ -19,7 +19,7 @@ export const callApiLogin = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//login",
+        url: "https://findhome-eg5m.onrender.com/login",
         data: payload,
       });
       resolve(response);
@@ -33,7 +33,7 @@ export const checkEmailUser = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//check-email-user",
+        url: "https://findhome-eg5m.onrender.com/check-email-user",
         data: payload,
       });
       resolve(response);
@@ -47,7 +47,7 @@ export const resetPassword = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//reset-password",
+        url: "https://findhome-eg5m.onrender.com/reset-password",
         data: payload,
       });
       resolve(response);
@@ -61,7 +61,7 @@ export const callApiDeleteUser = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//delete-user",
+        url: "https://findhome-eg5m.onrender.com/delete-user",
         data: payload,
       });
       resolve(response);

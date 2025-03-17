@@ -5,7 +5,7 @@ export const callApiHomepagePost = () =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: "https://findhome-eg5m.onrender.com//list-homepage-post",
+        url: "https://findhome-eg5m.onrender.com/list-homepage-post",
       });
       console.log(response);
       resolve(response);
@@ -19,7 +19,7 @@ export const callApiCreatePost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//create-post",
+        url: "https://findhome-eg5m.onrender.com/create-post",
         data: payload,
       });
 
@@ -34,7 +34,7 @@ export const callApiUpdatePost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//update-post",
+        url: "https://findhome-eg5m.onrender.com/update-post",
         data: payload,
       });
       resolve(response);
@@ -48,7 +48,7 @@ export const callApiDeletePost = (id) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: `https://findhome-eg5m.onrender.com//post-delete/${id}`,
+        url: `https://findhome-eg5m.onrender.com/post-delete/${id}`,
       });
       resolve(response);
     } catch (error) {
@@ -61,7 +61,7 @@ export const callApiDetailPost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: `https://findhome-eg5m.onrender.com//post-detail/${payload}`,
+        url: `https://findhome-eg5m.onrender.com/post-detail/${payload}`,
         data: payload,
       });
       resolve(response);
@@ -88,7 +88,7 @@ export const callApihandleLikePost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: `https://findhome-eg5m.onrender.com//handle-like-post`,
+        url: `https://findhome-eg5m.onrender.com/handle-like-post`,
         data: payload,
       });
       resolve(response);
@@ -102,7 +102,7 @@ export const callApiCheckLikePost = (payload) =>
     try {
       const response = await axiosConfig({
         method: "put",
-        url: `https://findhome-eg5m.onrender.com//check-like-post`,
+        url: `https://findhome-eg5m.onrender.com/check-like-post`,
         data: payload,
       });
       resolve(response);
@@ -116,7 +116,7 @@ export const callApiListLikePost = (userId) =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: `https://findhome-eg5m.onrender.com//list-liked-post/${userId}`,
+        url: `https://findhome-eg5m.onrender.com/list-liked-post/${userId}`,
       });
       resolve(response);
     } catch (error) {

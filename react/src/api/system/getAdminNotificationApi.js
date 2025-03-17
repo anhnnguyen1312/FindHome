@@ -5,7 +5,7 @@ export const callApiAdminNotification = () =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: "https://findhome-eg5m.onrender.com//admin-notification",
+        url: "https://findhome-eg5m.onrender.com/admin-notification",
       });
       resolve(response);
     } catch (error) {
@@ -17,8 +17,8 @@ export const callApiAdminMarkAsRead = (id) =>
   new Promise(async (resolve, reject) => {
     try {
       const url = id
-        ? `https://findhome-eg5m.onrender.com//admin-mark-read/${id}`
-        : `https://findhome-eg5m.onrender.com//admin-mark-read`;
+        ? `https://findhome-eg5m.onrender.com/admin-mark-read/${id}`
+        : `https://findhome-eg5m.onrender.com/admin-mark-read`;
       const response = await axiosConfig({
         method: "put",
         url: url,

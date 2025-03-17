@@ -5,7 +5,7 @@ export const callApiPostAdmin = (payload) =>
     try {
       const response = await axiosConfig({
         method: "get",
-        url: "https://findhome-eg5m.onrender.com//list-all-post",
+        url: "https://findhome-eg5m.onrender.com/list-all-post",
 
         data: payload,
       });
@@ -22,7 +22,7 @@ export const callApiCensorPostAdmin = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: `https://findhome-eg5m.onrender.com//handle-user-post`,
+        url: `https://findhome-eg5m.onrender.com/handle-user-post`,
         data: payload,
       });
       resolve(response);
@@ -37,7 +37,7 @@ export const callApiDeletePostAdmin = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: `https://findhome-eg5m.onrender.com//post-delete/${payload.postId}`,
+        url: `https://findhome-eg5m.onrender.com/post-delete/${payload.postId}`,
         data: payload,
       });
       resolve(response);

@@ -6,7 +6,7 @@ export const callUserAction = (payload) =>
     try {
       const response = await axiosConfig({
         method: "post",
-        url: "https://findhome-eg5m.onrender.com//user-action",
+        url: "https://findhome-eg5m.onrender.com/user-action",
         data: payload,
       });
       resolve(response);
