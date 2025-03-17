@@ -70,14 +70,35 @@ export const callApiDetailPost = (payload) =>
     }
   });
 
+// export const callApiRecommendSystem = (postId, userId) =>
+//   new Promise(async (resolve, reject) => {
+//     try {
+//       const response = await axiosConfig({
+//         method: "get",
+//         url: `https://findhome-python-server.onrender.com/recommend?id=${postId},${userId}`,
+//       });
+//       resolve(response);
+//     } catch (error) {
+//       reject(error);
+//     }
+//   });
+
 export const callApiRecommendSystem = (postId, userId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const response = await axiosConfig({
-        method: "get",
-        url: `https://findhome-python-server.onrender.com/recommend?id=${postId},${userId}`,
-      });
-      resolve(response);
+      if (postId && userId) {
+        const response = await axiosConfig({
+          method: "get",
+          url: `https://findhome-python-server.onrender.com/recommend?id=${postId},${userId}`,
+        });
+        resolve(response);
+      } else if (postId) {
+        const response = await axiosConfig({
+          method: "get",
+          url: `https://findhome-python-server.onrender.com/recommend?id=${postId}`,
+        });
+        resolve(response);
+      }
     } catch (error) {
       reject(error);
     }
