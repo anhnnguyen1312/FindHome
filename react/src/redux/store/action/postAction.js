@@ -33,9 +33,13 @@ export const postAction = () => async (dispatch) => {
 export const homepagePostAction = () => async (dispatch) => {
   try {
     const response = await callApiHomepagePost();
-
+    console.log("response ", response);
     const token = response.data.token;
+    console.log("token ", token);
+
     const decodetoken = token.map((token) => jwtDecode(token));
+    console.log("decodetoken ", decodetoken);
+
     if (response?.data.token) {
       dispatch({
         type: actionTypes.GET_POST_HOMEPAGE,
