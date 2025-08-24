@@ -10,7 +10,7 @@ import psycopg2
 app = Flask(__name__)
 CORS(app)
 
-
+conn=None
 try:
 
     # conn = mysql.connector.connect(**config)
@@ -19,10 +19,10 @@ try:
     #     print('recommned Kết nối thành công vào Database')
     conn = psycopg2.connect(
         dbname='postgres',
-        user='postgres.wsnbyoezmsbjrkkxwupp',
+        user='postgres.bbynyifamimgxcolpliq',
         password='findinghomepostgres123aA@',
-        host='aws-0-ap-southeast-1.pooler.supabase.com',
-        port=6543
+        host='aws-1-ap-southeast-1.pooler.supabase.com',
+        port=5432
     )
     print("Connection to PostgreSQL successful!")
     

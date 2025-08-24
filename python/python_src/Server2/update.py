@@ -28,11 +28,11 @@ tf = TfidfVectorizer ()
 #postgres
 
 config = {
-    'user': 'postgres.wsnbyoezmsbjrkkxwupp',
+    'user': 'postgres.bbynyifamimgxcolpliq',
     'password': 'findinghomepostgres123aA@',
-    'host': 'aws-0-ap-southeast-1.pooler.supabase.com',
+    'host': 'aws-1-ap-southeast-1.pooler.supabase.com',
     'database': 'postgres',
-    'port': 6543,
+    'port': 5432,
     'raise_on_warnings': True
 }
 def combineFeatures_type_price_address(row):
@@ -89,6 +89,7 @@ def index():
     return "Welcome to FindHome"
 @app.route('/recommend',methods=['GET'])
 def call_api():
+    conn = None
     try:
     # Kết nối vào cơ sở dữ liệu
     # Kết nối vào cơ sở dữ liệu bằng mysql
@@ -101,10 +102,10 @@ def call_api():
         #conn = psycopg2.connect(**config)
         conn = psycopg2.connect(
         dbname='postgres',
-        user='postgres.wsnbyoezmsbjrkkxwupp',
+        user='postgres.bbynyifamimgxcolpliq',
         password='findinghomepostgres123aA@',
-        host='aws-0-ap-southeast-1.pooler.supabase.com',
-        port=6543
+        host='aws-1-ap-southeast-1.pooler.supabase.com',
+        port=5432
     )
         print("Connection to PostgreSQL successful!")
         # if conn is not None and conn.closed == 0:
