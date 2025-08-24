@@ -7,8 +7,8 @@ services:
     ports:
       - "5002:5002"  # Mở cổng 5000 cho server1
     environment:
-      - DB_HOST=aws-0-ap-southeast-1.pooler.supabase.com  # Địa chỉ IP hoặc tên miền của PostgreSQL server trực tuyến
-      - DB_USER=postgres.wsnbyoezmsbjrkkxwupp  # Tên người dùng PostgreSQL
+      - DB_HOST=aws-1-ap-southeast-1.pooler.supabase.com  # Địa chỉ IP hoặc tên miền của PostgreSQL server trực tuyến
+      - DB_USER=postgres.bbynyifamimgxcolpliq  # Tên người dùng PostgreSQL
       - DB_PASSWORD=findinghomepostgres123aA@  # Mật khẩu PostgreSQL
       - DB_NAME=postgres 
     networks:
@@ -20,8 +20,8 @@ services:
     ports:
       - "5001:5001"  # Mở cổng 5001 cho server2
     environment:
-      - DB_HOST=aws-0-ap-southeast-1.pooler.supabase.com  # Địa chỉ IP hoặc tên miền của PostgreSQL server trực tuyến
-      - DB_USER=postgres.wsnbyoezmsbjrkkxwupp  # Tên người dùng PostgreSQL
+      - DB_HOST=aws-1-ap-southeast-1.pooler.supabase.com  # Địa chỉ IP hoặc tên miền của PostgreSQL server trực tuyến
+      - DB_USER=postgres.bbynyifamimgxcolpliq  # Tên người dùng PostgreSQL
       - DB_PASSWORD=findinghomepostgres123aA@  # Mật khẩu PostgreSQL
       - DB_NAME=postgres 
     networks:
